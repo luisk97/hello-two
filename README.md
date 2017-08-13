@@ -1,3 +1,3 @@
 # hello-two
 just another repository
-Con este ejemploaprenferemos a usar _GitHub_
+Con este ejemplo aprenferemos a usar _GitHub_
