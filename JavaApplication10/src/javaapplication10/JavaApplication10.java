@@ -3,15 +3,21 @@ package javaapplication10;
 public class JavaApplication10 {
 
     public static void main(String[] args) {
-        Nodo primer = new Nodo("ejemplo de lo loco que soy");
-        Nodo segundo = new Nodo(45);
-        Nodo tercer = new Nodo("hola");
+        ListaEnlazada lista = new ListaEnlazada();
         
-        primer.enlazarSiguiente(segundo);
-        primer.obtenerSuiguiente().enlazarSiguiente(tercer);
+        System.out.println("Esta vacia: "+lista.estaVacio());
+        System.out.println("Ultimo elemento: "+lista.obtenerUltimo());
         
-        System.out.println(primer.obtenerSuiguiente().obtenerSuiguiente().obtenerValor());
-        
+        lista.addPrimero("Luis K");
+        lista.addPrimero(100);
+        lista.addPrimero("hola que pex");
+        lista.addPrimero(3);
+         
+        System.out.println("Esta vacia: "+lista.estaVacio());
+        System.out.println("Primer elemento: "+lista.obtener(0));
+        System.out.println("Ultimo elemento: "+lista.obtenerUltimo());
+        System.out.println("Esta vacia: "+lista.estaVacio());
+        System.out.println("Tamaño: "+lista.size());
     }
     
 }
