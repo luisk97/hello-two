@@ -44,6 +44,33 @@ public class ListaEnlazada {
         size++;
     }
     
+    public void cortar(int index){
+        Nodo temp = cabeza;
+        for(int i = 0;i < (index-1);i++){
+                temp = temp.obtenerSuiguiente();
+        }
+        temp.enlazarSiguiente(null);
+        size = index;
+    }
+    
+    public void eliminar(int indice){
+        if(indice == 0){
+            cabeza = cabeza.obtenerSuiguiente();
+        }else{
+            Nodo temp = cabeza;
+            for(int i = 0;i < (indice-1);i++){
+                temp = temp.obtenerSuiguiente();
+            }
+            temp.enlazarSiguiente(temp.obtenerSuiguiente().obtenerSuiguiente());
+        }
+        size--;
+    }
+    
+    public void eliminarPrimero(){
+        cabeza = cabeza.obtenerSuiguiente();
+        size--;
+    }
+    
     public int size(){
         return size;
     }
