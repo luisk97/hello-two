@@ -3,7 +3,7 @@ package javaapplication10;
 public class JavaApplication10 {
 
     public static void main(String[] args) {
-        Nodo primer = new Nodo("ejemplo");
+        Nodo primer = new Nodo("ejemplo de lo loco que soy");
         Nodo segundo = new Nodo(45);
         Nodo tercer = new Nodo("hola");
         
