@@ -1,28 +1,74 @@
 package javaapplication10;
-
+import java.util.Scanner;
 public class JavaApplication10 {
 
     public static void main(String[] args) {
+        int opcion;
+        boolean flag = true;
+        Scanner s = new Scanner(System.in);
         ListaEnlazada lista = new ListaEnlazada();
+        do{
+            System.out.println("         Menu");
+            System.out.println("Elija una opcion:");
+            System.out.println("1-Agregar un elemento a la lista");
+            System.out.println("2-Obtener el ultimo objeto.");
+            System.out.println("3-Obtener un objeto especifico.");
+            System.out.println("4-Eliminar un objeto especifico.");
+            System.out.println("5-Eliminar el primer objeto");
+            System.out.println("6-Verificar si esta vacia.");
+            System.out.println("7-Ver el tamaño de la lista");
+            System.out.println("8-Salir");
+            opcion = s.nextInt();
+            switch(opcion){
+                case 1:{
+                    Object x;
+                    System.out.println("Introdusca el objeto");
+                    x = s.next();
+                    lista.addPrimero(x);
+                    break;
+                }
+                case 2:{
+                    System.out.println(lista.obtenerUltimo());
+                    break;
+                }
+                case 3:{
+                    int x;
+                    System.out.println("Introdusca el indice del objeto que desea");
+                    x = s.nextInt();
+                    System.out.println(lista.obtener(x));
+                    break;
+                }
+                case 4:{
+                    int x;
+                    System.out.println("Introdusca el indice de objet  que desea eliminar");
+                    x = s.nextInt();
+                    lista.eliminar(x);
+                    break;
+                }
+                case 5:{
+                    lista.eliminarPrimero();
+                    System.out.println("listo");
+                    break;
+                }
+                case 6:{
+                    System.out.println("Esta vacia: "+lista.estaVacio());
+                    break;
+                }
+                case 7:{
+                    System.out.println("El tamaño de la lista es: "+lista.size());
+                    break;
+                }
+                case 8:{
+                    flag = false;
+                    break;
+                }
+                default:{
+                    
+                }
+            }
+        }while(flag);
+        System.out.println("Adios");
         
-        System.out.println("Esta vacia: "+lista.estaVacio());
-        System.out.println("Ultimo elemento: "+lista.obtenerUltimo());
-        
-        lista.addPrimero(6);
-        lista.addPrimero(5);
-        lista.addPrimero(4);
-        lista.addPrimero(3);
-        lista.addPrimero(2);
-        lista.addPrimero(1);
-        
-        lista.cortar(3);
-         
-        System.out.println("Esta vacia: "+lista.estaVacio());
-        System.out.println("Primer elemento: "+lista.obtener(0));
-        System.out.println("indice 2: "+lista.obtener(2));
-        System.out.println("Ultimo elemento: "+lista.obtenerUltimo());
-        System.out.println("Esta vacia: "+lista.estaVacio());
-        System.out.println("Tamaño: "+lista.size());
     }
     
 }
