@@ -17,7 +17,9 @@ public class JavaApplication10 {
             System.out.println("5-Eliminar el primer objeto");
             System.out.println("6-Verificar si esta vacia.");
             System.out.println("7-Ver el tamaño de la lista");
-            System.out.println("8-Salir");
+            System.out.println("8-Ver lista");
+            System.out.println("9-Salir");
+            lista.obtenerLista();
             opcion = s.nextInt();
             switch(opcion){
                 case 1:{
@@ -59,6 +61,10 @@ public class JavaApplication10 {
                     break;
                 }
                 case 8:{
+                    lista.obtenerLista();
+                    break;
+                }
+                case 9:{
                     flag = false;
                     break;
                 }

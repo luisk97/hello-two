@@ -10,6 +10,19 @@ public class ListaEnlazada {
         size = 0;
     }
     
+    public void obtenerLista(){
+        Nodo temp = cabeza;
+        if(cabeza == null){
+            System.out.println("lista vacia");
+        }else{
+            for(int i = 0;i < size;i++){
+                System.out.print(temp.obtenerValor()+", ");
+                temp = temp.obtenerSuiguiente();
+            }
+            System.out.println("");
+        }
+    }
+    
     public Object obtener(int index){
         int contador = 0;
         Nodo temp = cabeza;
