@@ -7,10 +7,16 @@ public class JavaApplication10 {
         boolean flag = true;
         Scanner s = new Scanner(System.in);
         ListaEnlazada lista = new ListaEnlazada();
+        for(int i = 0;i<6;i++){
+            lista.add(i);
+        }
+        lista.obtenerLista();
+        
         do{
             System.out.println("         Menu");
             System.out.println("Elija una opcion:");
-            System.out.println("1-Agregar un elemento a la lista");
+            System.out.println("0-Agregar un elemento a la lista.");
+            System.out.println("1-Agregar un elemento como el primero a la lista.");
             System.out.println("2-Obtener el ultimo objeto.");
             System.out.println("3-Obtener un objeto especifico.");
             System.out.println("4-Eliminar un objeto especifico.");
@@ -22,6 +28,13 @@ public class JavaApplication10 {
             lista.obtenerLista();
             opcion = s.nextInt();
             switch(opcion){
+                case 0:{
+                    Object x;
+                    System.out.println("Introdusca el objeto");
+                    x = s.next();
+                    lista.add(x);
+                    break;
+                }
                 case 1:{
                     Object x;
                     System.out.println("Introdusca el objeto");
