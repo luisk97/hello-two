@@ -2,82 +2,165 @@ package javaapplication10;
 import java.util.Scanner;
 public class JavaApplication10 {
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
         int opcion;
+        Menu menu = new Menu();
         boolean flag = true;
         Scanner s = new Scanner(System.in);
-        ListaEnlazada lista = new ListaEnlazada();
-        for(int i = 0;i<6;i++){
-            lista.add(i);
-        }
-        lista.obtenerLista();
-        
+        ListaEnlazadaDoble lista = new ListaEnlazadaDoble();
         do{
-            System.out.println("         Menu");
-            System.out.println("Elija una opcion:");
-            System.out.println("0-Agregar un elemento a la lista.");
-            System.out.println("1-Agregar un elemento como el primero a la lista.");
-            System.out.println("2-Obtener el ultimo objeto.");
-            System.out.println("3-Obtener un objeto especifico.");
-            System.out.println("4-Eliminar un objeto especifico.");
-            System.out.println("5-Eliminar el primer objeto");
-            System.out.println("6-Verificar si esta vacia.");
-            System.out.println("7-Ver el tamaño de la lista");
-            System.out.println("8-Ver lista");
-            System.out.println("9-Salir");
+            menu.imprimirMenu("la Aplicacion", "JsonStore");
             lista.obtenerLista();
             opcion = s.nextInt();
             switch(opcion){
-                case 0:{
-                    Object x;
-                    System.out.println("Introdusca el objeto");
-                    x = s.next();
-                    lista.add(x);
-                    break;
-                }
                 case 1:{
-                    Object x;
-                    System.out.println("Introdusca el objeto");
-                    x = s.next();
-                    lista.addPrimero(x);
+                    String nom;
+                    System.out.println("Introdusca el nombre del Store");
+                    nom = s.next();
+                    lista.add(nom);
                     break;
                 }
                 case 2:{
-                    System.out.println(lista.obtenerUltimo());
+                    int ind;
+                    System.out.println("Introdusca el indice donde desea insertarlo:");
+                    ind = s.nextInt();
+                    if(ind<(lista.size()-1)){
+                        System.out.println("Ingrese el nombre del JsonStore");
+                        String nom;
+                        nom=s.next();
+                        lista.insertar(ind,nom); 
+                    }else{
+                        if(ind==(lista.size()-1)){
+                            System.out.println("Ingrese el nombre del JsonStore");
+                            String nom;
+                            nom=s.next();
+                            lista.add(nom);
+                        }else{
+                        System.out.println("Indice fuera de rango.");
+                        }
+                    }
                     break;
                 }
                 case 3:{
-                    int x;
-                    System.out.println("Introdusca el indice del objeto que desea");
-                    x = s.nextInt();
-                    System.out.println(lista.obtener(x));
+                    int ind;
+                    JsonStore obtenido;
+                    System.out.println("Introdusca el indice del JsonStore que desea");
+                    ind = s.nextInt();
+                    obtenido = lista.obtener(ind);
+                    boolean flag2 = true;
+                    do{
+                    menu.imprimirMenu(obtenido.obtenerNombre(),"DocumntoJson");
+                    ind = s.nextInt();
+                    switch(ind){
+                        case 1:{
+                            String nom;
+                            System.out.println("Introdusca el nombre del Documento");
+                            nom = s.next();
+                            obtenido.obtenerLista().add(nom);
+                            break;
+                        }
+                        case 2:{
+                            String nom;
+                            System.out.println("Introdusca el nombre del Documento");
+                            nom = s.next();
+                            obtenido.obtenerLista().addPrimero(nom);
+                            break;
+                        }
+                        case 3:{
+                            int indice;
+                            DocumentoJson doc;
+                            System.out.println("Introdusca el indice del documento que desea: ");
+                            indice = s.nextInt();
+                            doc = obtenido.obtenerLista().obtener(indice);
+                            boolean flag3 = true;
+                            do{
+                                System.out.println("        Menu de "+doc.obtenerNombre());
+                                System.out.println("1-Definir atributo.");
+                                System.out.println("2-Ver atributos.");
+                                System.out.println("3-Obtener atributo ");
+                                System.out.println("4-Salir");
+                                ind=s.nextInt();
+                                switch(ind){
+                                    case 1:{
+                                        System.out.println("Introduca el nombre del atributo: ");
+                                        String nom = s.next();
+                                        System.out.println("Introdusca el tipo de atributo: ");
+                                        Object tipo = s.next();
+                                        System.out.println("Introdusca el tipo especial: ");
+                                        Object tipoEsp = s.next();
+                                        System.out.println("Es requerido si o no:");
+                                        String requerido = s.next();
+                                        doc.obtenerLista().addAtributo(nom,tipo,tipoEsp,requerido);
+                                        break;
+                                    }
+                                    case 2:{
+                                        doc.obtenerLista().verAtributos();
+                                        break;
+                                    }
+                                    case 3:{
+                                        System.out.println("Introdusca el indice de atributo: ");
+                                        ind = s.nextInt();
+                                        ObjetoJson obj = doc.obtenerLista().obtenerAtributo(ind);
+                                        obj.verCaracteristicas();
+                                        break;
+                                    }
+                                    case 4:{
+                                        flag3 = false;
+                                    }
+                                }
+                            }while(flag3);
+                            break;
+                        }
+                        case 4:{
+                            System.out.println(obtenido.obtenerLista().obtenerUltimo());
+                            break;
+                        }
+                        case 5:{
+                            obtenido.verLista();
+                            break;
+                        }
+                        case 6:{
+                            flag2 = false;
+                        }
+                        default:{
+                            
+                        }
+                    }
+                    }while(flag2);
                     break;
                 }
                 case 4:{
+                    System.out.println(lista.obtenerUltimo());
+                    break;
+                }
+                case 5:{
                     int x;
                     System.out.println("Introdusca el indice de objet  que desea eliminar");
                     x = s.nextInt();
                     lista.eliminar(x);
                     break;
                 }
-                case 5:{
+                case 6:{
                     lista.eliminarPrimero();
                     System.out.println("listo");
                     break;
                 }
-                case 6:{
+                case 7:{
                     System.out.println("Esta vacia: "+lista.estaVacio());
                     break;
                 }
-                case 7:{
+                case 8:{
                     System.out.println("El tamaño de la lista es: "+lista.size());
                     break;
                 }
-                case 8:{
+                case 9:{
                     lista.obtenerLista();
                     break;
                 }
-                case 9:{
+                case 10:{
+                    
+                }
+                case 11:{
                     flag = false;
                     break;
                 }

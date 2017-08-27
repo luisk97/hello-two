@@ -2,18 +2,39 @@
 package javaapplication10;
 
 public class JsonStore {
-    private Object valor;
+    private String nombre;
+    //private Object valor;
+    private ListaDoblementeEnlazadaCircular lista;
     private JsonStore siguiente;
     private JsonStore anterior;
     
-    public JsonStore(Object valor){
-        this.valor = valor;
+    public JsonStore(String nombre,ListaDoblementeEnlazadaCircular lista){
+        this.nombre = nombre;
+        this.lista = lista;
     }
     
-    public Object obtenerValor(){
-        return valor;
+    public void setNombre(String nombre){
+        this.nombre = nombre;
     }
-
+    public String obtenerNombre(){
+        return nombre;
+    }
+    
+    //public Object obtenerValor(){
+        //return valor;
+    //}
+    public boolean estaVacio(){
+        return (lista==null);
+    }
+    
+    public void verLista(){
+        lista.obtenerLista();
+    }
+    
+    public ListaDoblementeEnlazadaCircular obtenerLista(){
+        return lista;
+    }
+    
     public void enlazarSiguiente(JsonStore n){
         siguiente = n;
     }
@@ -22,7 +43,7 @@ public class JsonStore {
         anterior = a;
     }
     
-    public JsonStore obtenerSuiguiente(){
+    public JsonStore obtenerSiguiente(){
         return siguiente;
     }
     
