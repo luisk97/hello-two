@@ -1,13 +1,58 @@
 package javaapplication10;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Scanner;
 public class JavaApplication10 {
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws Exception{
+        
+//        ListaEnlazadaDoble lista = new ListaEnlazadaDoble();
+//        lista.add("j1");
+//        lista.add("j2");
+//        lista.add("j3");
+//        lista.add("j4");
+//        lista.add("j5");
+//        lista.obtener(0).obtenerLista().add("D1");
+//        lista.obtenerLista();
+//        lista.obtener(0).obtenerLista().obtener(0).obtenerLista().addAtributo("ced", "entero", "clave", "si");
+//        
+//        FileOutputStream out = new FileOutputStream("Jsons.txt");
+//        ObjectOutputStream salida = new ObjectOutputStream(out);
+//        
+//        salida.writeObject(lista);
+//        salida.flush();
+        
+        
+        
+//        lista.obtenerLista();
+//        lista.obtener(0).obtenerLista().obtenerLista();
+//        System.out.println(lista.obtener(0).obtenerLista().obtener(0).obtenerNombre());
+//        lista.obtener(0).obtenerLista().obtener(0).obtenerLista().verAtributos();
+//        lista.obtener(0).obtenerLista().obtener(0).obtenerLista().obtenerAtributo(0).verCaracteristicas();
+        
+        
+        
+//        lista.obtenerPorValor("j3").obtenerLista().add("D1");
+//        lista.obtenerPorValor("j3").obtenerLista().obtener(0).obtenerLista().addAtributo("Cedula", "cadena", "llavePrimaria", "si");
+//        
+//        
+//        FileOutputStream out = new FileOutputStream("Jsons.txt");
+//        ObjectOutputStream salida = new ObjectOutputStream(out);
+        
+
+
+
+
+
+        ObjectInputStream leer = new ObjectInputStream(new FileInputStream("Jsons.txt"));
+        ListaEnlazadaDoble lista = (ListaEnlazadaDoble) leer.readObject();
+        
         int opcion;
         Menu menu = new Menu();
         boolean flag = true;
         Scanner s = new Scanner(System.in);
-        ListaEnlazadaDoble lista = new ListaEnlazadaDoble();
         do{
             menu.imprimirMenu("la Aplicacion", "JsonStore");
             lista.obtenerLista();
@@ -158,7 +203,11 @@ public class JavaApplication10 {
                     break;
                 }
                 case 10:{
-                    
+                    FileOutputStream out = new FileOutputStream("Jsons.txt");
+                    ObjectOutputStream salida = new ObjectOutputStream(out);
+
+                    salida.writeObject(lista);
+                    salida.flush();
                 }
                 case 11:{
                     flag = false;

@@ -1,8 +1,9 @@
 package javaapplication10;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class ObjetoJson {
+public class ObjetoJson implements Serializable{
     private ObjetoJson siguiente;
     private String nombre;
     private Object tipo;
@@ -14,7 +15,7 @@ public class ObjetoJson {
         this.nombre = nombre;
         this.tipo = tipo;
         tipoEspecial = tipoEsp;
-        if(requerido=="si"){
+        if("si".equals(requerido)){
             this.requerido = true;
         }else{
             this.requerido = false;
@@ -22,6 +23,7 @@ public class ObjetoJson {
             System.out.println("Ingrese el valor predetermido:");
             Object valor;
             valor = s.next();
+            valorPredeterminado = valor;
         }
     }
     

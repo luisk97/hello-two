@@ -1,15 +1,17 @@
 package javaapplication10;
 
-public class DocumentoJson {
+import java.io.Serializable;
+
+public class DocumentoJson implements Serializable{
     private String nombre;
     private ListaEnlazada lista;
     //private Object valor;
     private DocumentoJson siguiente;
     private DocumentoJson anterior;
     
-    public DocumentoJson(String nombre,ListaEnlazada lista){
+    public DocumentoJson(String nombre){
         this.nombre = nombre;
-        this.lista = lista;
+        lista = new ListaEnlazada();
     }
     
 //    public Object obtenerValor(){

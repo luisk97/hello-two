@@ -1,16 +1,18 @@
 
 package javaapplication10;
 
-public class JsonStore {
+import java.io.Serializable;
+
+public class JsonStore implements Serializable{
     private String nombre;
     //private Object valor;
     private ListaDoblementeEnlazadaCircular lista;
     private JsonStore siguiente;
     private JsonStore anterior;
     
-    public JsonStore(String nombre,ListaDoblementeEnlazadaCircular lista){
+    public JsonStore(String nombre){
         this.nombre = nombre;
-        this.lista = lista;
+        lista = new ListaDoblementeEnlazadaCircular();
     }
     
     public void setNombre(String nombre){

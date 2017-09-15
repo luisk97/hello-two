@@ -1,6 +1,8 @@
 package javaapplication10;
 
-public class ListaDoblementeEnlazadaCircular {
+import java.io.Serializable;
+
+public class ListaDoblementeEnlazadaCircular implements Serializable{
     private DocumentoJson primero;
     private DocumentoJson ultimo;
     private int size;
@@ -11,17 +13,15 @@ public class ListaDoblementeEnlazadaCircular {
     }
     public void add(String nom){
         if(primero == null){
-            ListaEnlazada lista = new ListaEnlazada();
-            primero = new DocumentoJson(nom,lista);
+            primero = new DocumentoJson(nom);
             ultimo = primero;
             primero.enlazarSiguiente(ultimo);
             ultimo.enlazarSiguiente(primero);
             primero.enlazarAnterior(ultimo);
             ultimo.enlazarAnterior(primero);
         }else{
-            ListaEnlazada lista = new ListaEnlazada();
             DocumentoJson temp = ultimo;
-            DocumentoJson nuevo = new DocumentoJson(nom,lista);
+            DocumentoJson nuevo = new DocumentoJson(nom);
             temp.enlazarSiguiente(nuevo);
             nuevo.enlazarAnterior(temp);
             ultimo = nuevo;
@@ -35,17 +35,15 @@ public class ListaDoblementeEnlazadaCircular {
     
     public void addPrimero(String nom){
         if(primero == null){
-            ListaEnlazada lista = new ListaEnlazada();
-            primero = new DocumentoJson(nom,lista);
+            primero = new DocumentoJson(nom);
             ultimo = primero;
             primero.enlazarSiguiente(ultimo);
             ultimo.enlazarSiguiente(primero);
             primero.enlazarAnterior(ultimo);
             ultimo.enlazarAnterior(primero); 
         }else{
-            ListaEnlazada lista = new ListaEnlazada();
             DocumentoJson temp = primero;
-            DocumentoJson nuevo = new DocumentoJson(nom,lista);
+            DocumentoJson nuevo = new DocumentoJson(nom);
             temp.enlazarAnterior(nuevo);
             nuevo.enlazarSiguiente(temp);
             primero = nuevo;

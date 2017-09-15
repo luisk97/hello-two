@@ -2,8 +2,9 @@ package javaapplication10;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Serializable;
 
-public class ListaEnlazadaDoble {
+public class ListaEnlazadaDoble implements Serializable{
     
     private JsonStore cabeza;
     private JsonStore ultimo;
@@ -29,13 +30,24 @@ public class ListaEnlazadaDoble {
     }
     
     public JsonStore obtener(int index){
-        int contador = 0;
         JsonStore temp = cabeza;
-        while(contador < index){
+        while(0 < index){
             temp = temp.obtenerSiguiente();
-            contador++;
+            index--;
         }
         return temp;
+    }
+    
+    public JsonStore obtenerPorValor(Object nombre){
+        JsonStore temp = cabeza;
+        while(temp != null){
+            if(temp.obtenerNombre().equals(nombre)){
+                return temp;
+            }else{
+                temp = temp.obtenerSiguiente();
+            }
+        }
+        return null;
     }
 //    public Object obtenerAnterior(int index){
 //        JsonStore temp = cabeza;
@@ -54,8 +66,7 @@ public class ListaEnlazadaDoble {
     
     public void insertar(int ind,String nom){
         JsonStore temp = cabeza;
-        ListaDoblementeEnlazadaCircular lista = new ListaDoblementeEnlazadaCircular();
-        JsonStore nuevo = new JsonStore(nom,lista);
+        JsonStore nuevo = new JsonStore(nom);
         for(int i = 0;i<(ind-1);i++){
             temp.obtenerSiguiente();
         }
@@ -66,18 +77,27 @@ public class ListaEnlazadaDoble {
         size++;
     }
     public void add(String nom){
-        ListaDoblementeEnlazadaCircular lista = new ListaDoblementeEnlazadaCircular();
         if(cabeza == null){
-            cabeza = new JsonStore(nom,lista);
+            cabeza = new JsonStore(nom);
             ultimo = cabeza;
         }else{
+            JsonStore actual = cabeza;
+            while(actual != null){
+                if(actual.obtenerNombre().equals(nom)){
+                    System.out.println("Store existente");
+                    return;
+                }else{
+                    actual = actual.obtenerSiguiente();
+                }
+            }  
             JsonStore temp = ultimo;
-            JsonStore nuevo = new JsonStore(nom,lista);
+            JsonStore nuevo = new JsonStore(nom);
             temp.enlazarSiguiente(nuevo);
             nuevo.enlazarAnterior(temp);
             ultimo = nuevo;
             }
         size++;
+        System.out.println("Se creo el Store: "+ nom);
     }
     
 //    public void cortar(int index){

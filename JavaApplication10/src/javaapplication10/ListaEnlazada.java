@@ -1,6 +1,8 @@
 package javaapplication10;
 
-public class ListaEnlazada {
+import java.io.Serializable;
+
+public class ListaEnlazada implements Serializable{
     private ObjetoJson cabeza;
     private ObjetoJson ultimo;
     private int size;
@@ -30,6 +32,8 @@ public class ListaEnlazada {
                 System.out.println(temp.obtenerNombre());
                 temp = temp.obtenerSiguiente();
             }
+        }else{
+            System.out.println("No hay atributos");
         }
     }
     
